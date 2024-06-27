@@ -53,7 +53,11 @@ export const SideBar = () => {
     return (
         <aside className={'flex flex-col items-center justify-between'}>
             <Link href={'/'}>
-                <h1 className={'cursor-pointer px-4 text-6xl text-white'}>
+                <h1
+                    className={
+                        'cursor-pointer px-4 text-6xl text-white hover:text-action'
+                    }
+                >
                     K.
                 </h1>
             </Link>

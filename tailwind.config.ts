@@ -22,6 +22,13 @@ const config: Config = {
         },
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        function ({ addVariant }: any) {
+            addVariant('child', '& > *');
+            addVariant('child-hover', '& > *:hover');
+            addVariant('child-child', '& > * > *');
+            addVariant('child-child-hover', '&:hover > * > *');
+        },
+    ],
 };
 export default config;

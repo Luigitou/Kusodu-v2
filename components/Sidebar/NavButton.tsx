@@ -12,9 +12,15 @@ export const NavButton = ({ icon, href }: NavButtonProps) => {
     return (
         <Link
             href={href}
-            className={'relative w-full overflow-hidden text-nowrap'}
+            className={'child-child-hover:text-action group text-nowrap'}
         >
-            <span>{icon}</span>
+            <span
+                className={
+                    ' block h-full w-full transition-transform duration-200 ease-in-out group-hover:translate-x-2'
+                }
+            >
+                {icon}
+            </span>
         </Link>
     );
 };
