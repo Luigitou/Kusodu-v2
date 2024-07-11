@@ -1,15 +1,16 @@
-export type Cell = {
-    value: number | null;
-    solution: number;
-    isLocked: boolean;
-}
+type Cell = {
+    row: number;
+    col: number;
+    value: number;
+};
 
-export type Grid = Array<Array<Cell>>;
-
-export type Game = {
-  grid: Grid;
-  score: number;
-  gameOver: boolean;
-  won: boolean;
-  difficulty: string;
+type GameState = {
+    gameBoard: number[][];
+    solution: number[][];
+    timer: number;
+    difficulty: string;
+    gameStatus: 'not_started' | 'in_progress' | 'completed';
+    errors: number;
+    hintsUsed: number;
+    selectedCell: Cell | null;
 };
