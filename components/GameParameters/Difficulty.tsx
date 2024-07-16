@@ -37,7 +37,7 @@ export function Difficulty({
                 <button
                     className={
                         'box-border flex h-full w-full  cursor-pointer items-center justify-center rounded-lg ' +
-                        'border-action bg-brighter text-white transition-transform duration-200 ease-in-out group-hover:-translate-y-2 group-hover:border-2'
+                        'border-action bg-brighter text-white transition-transform duration-200 ease-in-out group-hover:-translate-y-1 group-hover:border-2'
                     }
                 >
                     {difficulty.label}
