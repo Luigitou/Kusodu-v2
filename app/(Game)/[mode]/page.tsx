@@ -69,7 +69,7 @@ export default function Page() {
                     )}
                     <button
                         className={classNames(
-                            'relative z-10 rounded-lg border-2 border-action px-6 py-2 text-xl text-white',
+                            `relative z-10 rounded-lg border-2 border-action px-6 py-2 text-xl text-white`,
                             {
                                 'text-white': selectedDifficulty === null,
                                 'group-hover:text-dark':
