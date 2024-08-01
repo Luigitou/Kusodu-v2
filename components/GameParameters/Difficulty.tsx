@@ -2,6 +2,7 @@ type DifficultyProps = {
     difficulty: {
         id: number;
         label: string;
+        cellsToRemove: number;
     };
     selectedDifficulty: {
         selectedDifficulty: number | null;
@@ -13,7 +14,7 @@ export function Difficulty({
     difficulty,
     selectedDifficulty,
 }: DifficultyProps) {
-    if (selectedDifficulty.selectedDifficulty === difficulty.id) {
+    if (selectedDifficulty.selectedDifficulty === difficulty.cellsToRemove) {
         return (
             <div className={'group h-20 w-36'}>
                 <button
@@ -31,7 +32,9 @@ export function Difficulty({
             <div
                 className={'group h-20 w-36'}
                 onClick={() =>
-                    selectedDifficulty.setSelectedDifficulty(difficulty.id)
+                    selectedDifficulty.setSelectedDifficulty(
+                        difficulty.cellsToRemove
+                    )
                 }
             >
                 <button

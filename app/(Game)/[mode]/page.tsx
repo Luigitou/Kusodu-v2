@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { Difficulty } from '@/components';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { fetchGameGrid } from '@/services';
 
 export default function Page() {
     const params = useParams();
@@ -13,6 +14,19 @@ export default function Page() {
     const [selectedDifficulty, setSelectedDifficulty] = useState<number | null>(
         null
     );
+
+    const startGame = () => {
+        if (selectedDifficulty === null) return;
+        fetchGameGrid(selectedDifficulty, 9)
+            .catch((error) => {
+                if (error instanceof Error) {
+                    console.error('An error occurred:', error.message);
+                }
+            })
+            .then((data) => {
+                console.log('Game started', data);
+            });
+    };
 
     return (
         <div className={'flex h-full w-full items-center justify-center'}>
@@ -77,6 +91,7 @@ export default function Page() {
                                 'cursor-default': selectedDifficulty === null,
                             }
                         )}
+                        onClick={startGame}
                     >
                         Start game !
                     </button>
@@ -90,25 +105,31 @@ const availableDifficulty = [
     {
         id: 0,
         label: 'Easy',
+        cellsToRemove: 20,
     },
     {
         id: 1,
         label: 'Medium',
+        cellsToRemove: 30,
     },
     {
         id: 2,
         label: 'Hard',
+        cellsToRemove: 40,
     },
     {
         id: 3,
         label: 'Expert',
+        cellsToRemove: 50,
     },
     {
         id: 4,
         label: 'Master',
+        cellsToRemove: 55,
     },
     {
         id: 5,
         label: 'Extreme',
+        cellsToRemove: 60,
     },
 ];
