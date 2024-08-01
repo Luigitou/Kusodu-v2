@@ -69,9 +69,7 @@ function solveSudoku(grid: number[][], row: number, col: number): boolean {
     return false;
 }
 
-export function fillGrid(): number[][] {
-    let grid: number[][] = Array.from({ length: 9 }, () => Array(9).fill(0));
-
+export function fillGrid(grid: number[][]): number[][] {
     solveSudoku(grid, 0, 0);
 
     return grid;
