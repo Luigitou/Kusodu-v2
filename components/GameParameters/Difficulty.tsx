@@ -1,12 +1,10 @@
+import { difficulty } from '@/types';
+
 type DifficultyProps = {
-    difficulty: {
-        id: number;
-        label: string;
-        cellsToRemove: number;
-    };
+    difficulty: difficulty;
     selectedDifficulty: {
-        selectedDifficulty: number | null;
-        setSelectedDifficulty: (value: number) => void;
+        selectedDifficulty: difficulty | undefined;
+        setSelectedDifficulty: (value: difficulty) => void;
     };
 };
 
@@ -14,7 +12,7 @@ export function Difficulty({
     difficulty,
     selectedDifficulty,
 }: DifficultyProps) {
-    if (selectedDifficulty.selectedDifficulty === difficulty.cellsToRemove) {
+    if (selectedDifficulty.selectedDifficulty?.id === difficulty.id) {
         return (
             <div className={'group h-20 w-36'}>
                 <button
@@ -32,9 +30,7 @@ export function Difficulty({
             <div
                 className={'group h-20 w-36'}
                 onClick={() =>
-                    selectedDifficulty.setSelectedDifficulty(
-                        difficulty.cellsToRemove
-                    )
+                    selectedDifficulty.setSelectedDifficulty(difficulty)
                 }
             >
                 <button

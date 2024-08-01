@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Cell, GameState } from '@/types';
 
 const initialState: GameState = {
     gameBoard: [],
@@ -15,6 +16,18 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
+        initGame(
+            state,
+            action: PayloadAction<{
+                gameBoard: number[][];
+                solution: number[][];
+                difficulty: string;
+            }>
+        ) {
+            state.gameBoard = action.payload.gameBoard;
+            state.solution = action.payload.solution;
+            state.difficulty = action.payload.difficulty;
+        },
         setBoard(state, action: PayloadAction<number[][]>) {
             state.gameBoard = action.payload;
         },
@@ -50,6 +63,7 @@ const gameSlice = createSlice({
 });
 
 export const {
+    initGame,
     setBoard,
     setSolution,
     updateCell,

@@ -1,10 +1,10 @@
-type Cell = {
+export type Cell = {
     row: number;
     col: number;
     value: number;
 };
 
-type GameState = {
+export type GameState = {
     gameBoard: number[][];
     solution: number[][];
     timer: number;
@@ -13,4 +13,16 @@ type GameState = {
     errors: number;
     hintsUsed: number;
     selectedCell: Cell | null;
+};
+
+export type gridType = {
+    solution: number[][];
+    gameBoard: number[][];
+    difficulty: number;
+};
+
+export type difficulty = {
+    id: number;
+    label: string;
+    cellsToRemove: number;
 };

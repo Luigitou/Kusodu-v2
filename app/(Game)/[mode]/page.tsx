@@ -5,27 +5,61 @@ import { Difficulty } from '@/components';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { fetchGameGrid } from '@/services';
+import { useNotifier } from '@/hooks';
+import { useDispatch } from 'react-redux';
+import { difficulty, gridType } from '@/types';
+import { initGame } from '@/store/Game/GameReducer';
 
 export default function Page() {
+    const notify = useNotifier();
+    const dispatch = useDispatch();
     const params = useParams();
 
     const mode = params.mode;
 
-    const [selectedDifficulty, setSelectedDifficulty] = useState<number | null>(
-        null
-    );
+    const [selectedDifficulty, setSelectedDifficulty] = useState<difficulty>();
 
     const startGame = () => {
-        if (selectedDifficulty === null) return;
-        fetchGameGrid(selectedDifficulty, 9)
+        if (
+            selectedDifficulty === null ||
+            selectedDifficulty?.cellsToRemove === undefined
+        )
+            return;
+        fetchGameGrid(selectedDifficulty?.cellsToRemove, 9)
             .catch((error) => {
                 if (error instanceof Error) {
-                    console.error('An error occurred:', error.message);
+                    notify({
+                        isError: true,
+                        message: error.message,
+                    });
                 }
             })
             .then((data) => {
-                console.log('Game started', data);
+                if (data === undefined) {
+                    notify({
+                        isError: true,
+                        message: "Couldn't fetch game grid",
+                    });
+                    return;
+                }
+                launchGame(data);
             });
+    };
+
+    const launchGame = (gameGrid: gridType) => {
+        if (
+            selectedDifficulty === null ||
+            selectedDifficulty?.cellsToRemove === undefined
+        ) {
+            return;
+        }
+        dispatch(
+            initGame({
+                gameBoard: gameGrid.gameBoard,
+                solution: gameGrid.solution,
+                difficulty: selectedDifficulty.label,
+            })
+        );
     };
 
     return (

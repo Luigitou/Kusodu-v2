@@ -1,1 +1,1 @@
-export type { Cell, Grid, Game } from './GameTypes';
+export type { Cell, GameState, gridType, difficulty } from './GameTypes';

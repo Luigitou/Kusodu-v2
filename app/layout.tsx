@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import React from 'react';
 import { SideBar } from '@/components';
-import { StoreProvider } from '@/context';
+import { NotistackProvider, StoreProvider } from '@/context';
 
 export const metadata: Metadata = {
     title: 'Kusodu',
@@ -22,12 +22,14 @@ export default function RootLayout({
                     'flex h-screen w-full gap-4 bg-brighter p-4 font-sans'
                 }
             >
-                <StoreProvider>
-                    <SideBar />
-                    <main className={'h-full grow rounded-2xl bg-dark'}>
-                        {children}
-                    </main>
-                </StoreProvider>
+                <NotistackProvider>
+                    <StoreProvider>
+                        <SideBar />
+                        <main className={'h-full grow rounded-2xl bg-dark'}>
+                            {children}
+                        </main>
+                    </StoreProvider>
+                </NotistackProvider>
             </body>
         </html>
     );
