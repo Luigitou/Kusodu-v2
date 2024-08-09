@@ -6,7 +6,7 @@ export const fetchGameGrid = async (
 ): Promise<gridType> => {
     try {
         const response = await fetch(
-            `http://localhost:3000/api/sudoku?difficulty=${difficulty}&size=${size}`
+            `${process.env.NEXT_PUBLIC_API_URL}/sudoku?difficulty=${difficulty}&size=${size}`
         );
         return await response.json();
     } catch (error) {

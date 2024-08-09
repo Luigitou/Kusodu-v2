@@ -82,7 +82,7 @@ export default function Page() {
                 </div>
                 <div
                     className={
-                        'flex w-full flex-col gap-3 rounded-lg bg-dark p-6'
+                        'flex w-full flex-col gap-3 rounded-lg bg-dark p-6 shadow-lg'
                     }
                 >
                     <span className={'w-fit cursor-default text-lg text-white'}>
