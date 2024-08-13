@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Difficulty } from '@/components';
 import { useState } from 'react';
 import classNames from 'classnames';
@@ -14,6 +14,7 @@ export default function Page() {
     const notify = useNotifier();
     const dispatch = useDispatch();
     const params = useParams();
+    const router = useRouter();
 
     const mode = params.mode;
 
@@ -60,6 +61,7 @@ export default function Page() {
                 difficulty: selectedDifficulty.label,
             })
         );
+        router.push(`/${mode}/1`);
     };
 
     return (
